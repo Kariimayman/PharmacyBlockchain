@@ -6,6 +6,7 @@ export class Pharmacy {
   DrugsName : PersistentVector<string> = new PersistentVector<string>("D")
   Quantity : PersistentVector<i32> = new PersistentVector<i32>("Q")
 
+  //simulates the supplier adding new drugs to the pharmacy
   @mutateState()
   AddDrug(Name : string , amount : i32): string 
   {
@@ -29,6 +30,8 @@ export class Pharmacy {
     this.Transactions.push(Move)
     return ("Added Successfully")
   }
+
+  //simulates the consumer purchasing a drug from the pharmacy
   @mutateState()
   RemoveDrug(Name : string , amount : i32) : string
   {
@@ -52,6 +55,8 @@ export class Pharmacy {
     }
     return("Item not found") 
   }
+
+  //Display all The transactions that happened
   TransactionHistory() : Array<Transaction>
   {
     let List = new Array<Transaction>(this.Transactions.length)
@@ -61,6 +66,8 @@ export class Pharmacy {
     }
     return List
   }
+
+  //View available drugs
   ViewInventory() : Array<string>
   {
     let counter : i32= 0
@@ -79,6 +86,8 @@ export class Pharmacy {
     }
     return List
   }
+
+  // Search for a specific drug's quantity 
   ViewQuantity(Search : string) : i32
   {
     for(let i = 0; i < this.DrugsName.length; i++)
